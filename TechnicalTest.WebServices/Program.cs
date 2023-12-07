@@ -35,12 +35,12 @@ builder.Services.AddScoped<IAnimalDomainService, AnimalDomainService>();
 var app = builder.Build();
 
 ///Solo se debe ejecutar la primera vez para crear el Modelo de BD
-//using (var scope = app.Services.CreateScope())
-//{
+using (var scope = app.Services.CreateScope())
+{
 
-//    var context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-//    context.Database.Migrate();
-//}
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    context.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
